@@ -1,0 +1,29 @@
+<div class="container custom-container-2">
+    <h3 class="mb-3 text-center">EmployeeList</h3>
+    <h3>{{errorMessage}}</h3>
+    <div class="col-md-12">
+      <table class="table table-bordered">
+        <thead>
+          <th>ID</th>
+          <th>NAME</th>
+          <th>PHONE</th>
+          <th>EMAIL</th>
+          <th>ACTIONS</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let employee of employees">
+            <td>{{employee.id}}</td>
+            <td>{{employee.name}}</td>
+            <td>{{employee.phone}}</td>
+            <td>{{employee.email}}</td>
+            <td>
+              <span class="btn btn-link" routerLink="/employee-edit/{{employee.id}}">Edit</span>
+              <span class="btn btn-link" (click)="deleteEmployee(employee.id)"> Delete</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    
+  </div>

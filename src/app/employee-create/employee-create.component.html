@@ -1,0 +1,62 @@
+<div class="col-md-8 mx-auto">
+    <form #userForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
+      <div class="card border-info mb-3">
+        <div class="card-header bg-info">
+          <h3 class="card-title">Create Employee</h3>
+        </div>
+        <div class="card-body">
+          <div class="form-group">
+            <input type="text" #nameRef="ngModel" required pattern="^[a-zA-Z][a-zA-Z ]+" maxlength="10" minlength="4"
+              class="form-control" placeholder="First Name" name="firstName" [(ngModel)]="userModel.name">
+            <div class="alert alert-danger"*ngIf="nameRef.touched &&  nameRef.invalid" >
+              <div *ngIf="nameRef.errors.required">
+                First Name is required
+              </div>
+              <div *ngIf="nameRef.errors.pattern">
+                Name is invalid
+              </div>
+              <div *ngIf="nameRef.errors.minlength">
+                Please Enter Atleast 4 Characters
+              </div>
+             </div>
+          </div>
+
+          <div class="form-group">
+            <input type="text" #mobileRef="ngModel" required pattern="[0-9]*" maxlength="10" minlength="10"
+              class="form-control" placeholder="Mobile Number" name="mobile" [(ngModel)]="userModel.phone">
+            <div class="alert alert-danger" *ngIf="mobileRef.touched &&  mobileRef.invalid" >
+              <div *ngIf="mobileRef.errors.pattern">
+                Mobile number should be only numbers
+              </div>
+
+              <div *ngIf="mobileRef.errors.minlength ">
+                Minimum 10 digits
+              </div>
+              <div *ngIf="mobileRef.errors.maxlength">
+                Please Enter Atleast 10 Digit Number
+              </div>
+              <div *ngIf="mobileRef.errors.required">
+                Mobile is required
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <input type="text" #emailRef="ngModel" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(.com)$"
+              class="form-control" placeholder="Email" name="email" [(ngModel)]="userModel.email" required>
+            <div *ngIf="emailRef.errors && (emailRef.dirty || emailRef.touched)" class="alert alert-danger">
+              <div [hidden]="!emailRef.errors.required">
+                Email is required
+              </div>
+              <div [hidden]="!emailRef.errors.pattern">
+                Email is Invalid
+              </div>
+            </div>
+          </div>
+        </div>
+          <div class="card-footer bg-info">
+            <button class="btn btn-outline-primary bg-light text-dark" [disabled]='userForm.invalid'>Submit</button>
+          </div>
+        </div>
+    </form>
+  </div>
